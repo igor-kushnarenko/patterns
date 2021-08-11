@@ -5,8 +5,7 @@ from enum import Enum
 class JokeState(Enum):
     OFF = 0
     WITHOUT_COIN = 1
-    SELECT_TRACK = 2
-    PLAY_TRACK = 3
+    PLAY_TRACK = 2
 
 
 class State(ABC):
@@ -51,22 +50,22 @@ class WithoutCoinState(State):
               'A1: THE BEATLES - Girl\n')
         joke.select_song = input()
         joke.coins += 1
-        joke.set_state(JokeState.SELECT_TRACK)
+        joke.set_state(JokeState.PLAY_TRACK)
 
 
-class SelectTrackState(State):
-    def on_off_button(self, joke) -> None:
-        print('Goodbye!')
-        joke.set_state(JokeState.OFF)
-
-    def stop_button(self, joke) -> None:
-        joke.coins -= 1
-        print('Eject your coin.')
-        print('Welcome! Joke-Box ready!')
-        joke.set_state(JokeState.WITHOUT_COIN)
-
-    def insert_coin(self, joke) -> None:
-        print('The coin is already inserted!')
+# class SelectTrackState(State):
+#     def on_off_button(self, joke) -> None:
+#         print('Goodbye!')
+#         joke.set_state(JokeState.OFF)
+#
+#     def stop_button(self, joke) -> None:
+#         joke.coins -= 1
+#         print('Eject your coin.')
+#         print('Welcome! Joke-Box ready!')
+#         joke.set_state(JokeState.WITHOUT_COIN)
+#
+#     def insert_coin(self, joke) -> None:
+#         print('The coin is already inserted!')
 
 
 class PlayTrackState(State):
@@ -89,7 +88,6 @@ class Joke:
         self.__states = {
             JokeState.OFF: OffState(),
             JokeState.WITHOUT_COIN: WithoutCoinState(),
-            JokeState.SELECT_TRACK: SelectTrackState(),
             JokeState.PLAY_TRACK: PlayTrackState(),
         }
         self.next_state = None
