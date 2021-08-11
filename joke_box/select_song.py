@@ -1,6 +1,6 @@
 import os
 import pyglet
-
+import pygame
 
 ABC_LIST = ['A', 'B', 'C']
 DIG_LIST = ['1', '2', '3']
@@ -29,7 +29,9 @@ for song in songs:
     if choose in song:
         for file in music_files:
             if song[4:] in file:
-                song = pyglet.media.load(file)
+                fullfile = f'/home/maxim/PycharmProjects/patterns/joke_box/static/{file}'
+                print(fullfile)
+                song = pyglet.media.load('file.mp3')
                 song.play()
                 pyglet.app.run()
 
