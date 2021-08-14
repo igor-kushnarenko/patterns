@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+from select_song import player
+
 
 class JokeState(Enum):
     OFF = 0
@@ -46,11 +48,9 @@ class WithoutCoinState(State):
     def insert_coin(self, joke) -> None:
         print('Insert your coin.')
         print('Select song: ')
-        print('A0: KISS - Forever\n'
-              'A1: THE BEATLES - Girl\n')
-        joke.select_song = input()
         joke.coins += 1
-        joke.set_state(JokeState.PLAY_TRACK)
+        player()
+        # joke.set_state(JokeState.PLAY_TRACK)
 
 
 # class SelectTrackState(State):

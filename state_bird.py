@@ -154,7 +154,7 @@ if __name__ == '__main__':
     while days < 10:
         dice = random.randint(1, 5)
         days += 1
-        print(f'----------------День {days}-----------------')
+        print(f'----------------Действие {days}-----------------')
         if dice == 1:
             bird.eat()
         if dice == 2:
