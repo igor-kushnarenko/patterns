@@ -32,6 +32,7 @@ class State(ABC):
 
 class IdleState(State):
     """Состояние ожидания"""
+
     def insert_money(self, coffee_machine) -> None:
         print("Переходим к состоянию выбора кофе")
         coffee_machine.set_state(CoffeeState.CHOOSE)
@@ -44,7 +45,8 @@ class IdleState(State):
 
 
 class WaitChooseState(State):
-    """Состояние выбора приготовляемого коффе"""
+    """Состояние выбора приготовляемого кофе"""
+
     def insert_money(self, coffee_machine) -> None:
         print("Загружено достаточно средств для заказа?")
 
@@ -60,6 +62,7 @@ class WaitChooseState(State):
 
 class ChangeState(State):
     """Состояние выбора приготовляемого кофе"""
+
     def insert_money(self, coffee_machine) -> None:
         self.eject_money(coffee_machine)
 
@@ -135,7 +138,7 @@ class LatteState(State):
 
 
 class EspressoState(State):
-    """Состояние приготовления espresso'"""
+    """Состояние приготовления espresso"""
 
     def insert_money(self, coffee_machine) -> None:
         self.make_coffee(coffee_machine)
@@ -178,6 +181,7 @@ class CoffeeMachine:
         }
         self.__state: State = self.__states[CoffeeState.IDLE]
         self.next_state: CoffeeState = None
+
     #
     # def get_state(self, state: CoffeeState):
     #     return self.__states[state]

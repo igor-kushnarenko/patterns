@@ -4,6 +4,7 @@ from enum import Enum
 
 
 class BirdState(Enum):
+    """Класс в котором собраны все состояния."""
     ON_GROUND = 0
     IN_AIR = 1
     IN_DEATH = 2
@@ -11,7 +12,7 @@ class BirdState(Enum):
 
 
 class State(ABC):
-
+    """Абстрактный класс содержащий все обязательные методы для каждого состояния."""
     @abstractmethod
     def eat(self, bird) -> None:
         pass
@@ -34,7 +35,7 @@ class State(ABC):
 
 
 class InAirState(State):
-
+    """Класс состояния"""
     def eat(self, bird) -> None:
         print('Заглатывая зерно в полете, птица подавилась и свалилась в отрытый люк :(')
         bird.set_state(BirdState.IN_DEATH)
@@ -55,7 +56,7 @@ class InAirState(State):
 
 
 class OnGroundState(State):
-
+    """Класс состояния"""
     def eat(self, bird) -> None:
         print('Птица любит полакомиться насекомыми которые ползают по земле.')
 
@@ -75,7 +76,7 @@ class OnGroundState(State):
 
 
 class OnWaterState(State):
-
+    """Класс состояния"""
     def eat(self, bird) -> None:
         print('Птица любит полакомиться насекомыми которые водятся на поверхности воды.')
 
@@ -95,30 +96,30 @@ class OnWaterState(State):
 
 
 class InDeath(State):
-
+    """Класс состояния"""
     def eat(self, bird) -> None:
-        print('Птица подохла, ей незачем кушать.')
+        print('Птица не живая, ей незачем кушать.')
         bird.next_state = 1
 
     def sleep(self, bird) -> None:
-        print('Птица подохла, она и так спит уже.')
+        print('Птица не живая, и так спит уже.')
         bird.next_state = 1
 
     def sing(self, bird) -> None:
-        print('Птица подохла и не споет более.')
+        print('Птица не живая и не споет более.')
         bird.next_state = 1
 
     def fly(self, bird) -> None:
-        print('Птица подохла и летать не в состоянии.')
+        print('Птица не живая и летать не в состоянии.')
         bird.next_state = 1
 
     def swim(self, bird) -> None:
-        print('Птица подохла и плавать не хочет.')
+        print('Птица не живая и плавать не хочет.')
         bird.next_state = 1
 
 
 class Bird:
-
+    """Класс принимающий состояния"""
     def __init__(self) -> None:
         self.__states = {
             BirdState.ON_GROUND: OnGroundState(),
